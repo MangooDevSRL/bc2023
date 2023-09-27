@@ -48,6 +48,11 @@ public class CacheConfiguration {
             createCache(cm, com.mangoodev.bootcamp2023.domain.User.class.getName());
             createCache(cm, com.mangoodev.bootcamp2023.domain.Authority.class.getName());
             createCache(cm, com.mangoodev.bootcamp2023.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.mangoodev.bootcamp2023.domain.Client.class.getName());
+            createCache(cm, com.mangoodev.bootcamp2023.domain.Client.class.getName() + ".transactions");
+            createCache(cm, com.mangoodev.bootcamp2023.domain.Transaction.class.getName());
+            createCache(cm, com.mangoodev.bootcamp2023.domain.Transaction.class.getName() + ".products");
+            createCache(cm, com.mangoodev.bootcamp2023.domain.Product.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
