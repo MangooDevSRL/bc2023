@@ -4,6 +4,7 @@ import com.mangoodev.bootcamp2023.domain.Client;
 import com.mangoodev.bootcamp2023.repository.ClientRepository;
 import com.mangoodev.bootcamp2023.service.dto.ClientDTO;
 import com.mangoodev.bootcamp2023.service.mapper.ClientMapper;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,6 +87,17 @@ public class ClientService {
     public Page<ClientDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Clients");
         return clientRepository.findAll(pageable).map(clientMapper::toDto);
+    }
+
+    /**
+     * Get top 3 clients.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    public List<ClientDTO> findTop3ClientsWithMostTransaction() {
+        List<Client> top3Clients = clientRepository.findTop3Clients();
+        return clientMapper.toDto(top3Clients);
     }
 
     /**

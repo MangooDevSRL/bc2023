@@ -1,6 +1,7 @@
 package com.mangoodev.bootcamp2023.repository;
 
 import com.mangoodev.bootcamp2023.domain.Client;
+import com.mangoodev.bootcamp2023.domain.Transaction;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -37,4 +38,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query("select client from Client client left join fetch client.user where client.id =:id")
     Optional<Client> findOneWithToOneRelationships(@Param("id") Long id);
+
+    @Query("SELECT c FROM Transaction t JOIN t.client c GROUP BY c.id ORDER BY COUNT(t.id) DESC")
+    List<Client> findTop3Clients();
 }

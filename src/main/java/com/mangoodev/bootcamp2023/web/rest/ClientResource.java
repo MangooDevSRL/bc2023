@@ -160,6 +160,22 @@ public class ClientResource {
     }
 
     /**
+     * {@code GET  /clients/top3} : get top 3 clients.
+     *
+     * @param pageable the pagination information.
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of clients in body.
+     */
+    @GetMapping("/clients/top3")
+    public ResponseEntity<List<ClientDTO>> getTop3() {
+        log.debug("REST request to get the top 3 clients with most transactions");
+
+        List<ClientDTO> top3Clients = clientService.findTop3ClientsWithMostTransaction();
+
+        return ResponseEntity.ok(top3Clients);
+    }
+
+    /**
      * {@code GET  /clients/:id} : get the "id" client.
      *
      * @param id the id of the clientDTO to retrieve.
