@@ -4,6 +4,8 @@ import com.mangoodev.bootcamp2023.domain.Transaction;
 import com.mangoodev.bootcamp2023.repository.TransactionRepository;
 import com.mangoodev.bootcamp2023.service.dto.TransactionDTO;
 import com.mangoodev.bootcamp2023.service.mapper.TransactionMapper;
+import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -86,6 +88,17 @@ public class TransactionService {
     public Page<TransactionDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Transactions");
         return transactionRepository.findAll(pageable).map(transactionMapper::toDto);
+    }
+
+    /**
+     * Get all the transactions for a specific day.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    public List<TransactionDTO> findDayTransactions() {
+        List<Transaction> dayTransactions = transactionRepository.findDayTransactions();
+        return transactionMapper.toDto(dayTransactions);
     }
 
     /**

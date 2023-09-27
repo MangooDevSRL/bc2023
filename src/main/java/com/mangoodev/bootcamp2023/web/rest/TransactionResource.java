@@ -151,6 +151,19 @@ public class TransactionResource {
     }
 
     /**
+     * {@code GET  /transactions} : get all the transactions for a specific day.
+     *
+     * @param pageable the pagination information.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of transactions in body.
+     */
+    @GetMapping("/transactions/day")
+    public ResponseEntity<List<TransactionDTO>> getDayTransactions() {
+        log.debug("REST request to get the transactions of the day");
+        List<TransactionDTO> dayTransactions = transactionService.findDayTransactions();
+        return ResponseEntity.ok(dayTransactions);
+    }
+
+    /**
      * {@code GET  /transactions/:id} : get the "id" transaction.
      *
      * @param id the id of the transactionDTO to retrieve.
