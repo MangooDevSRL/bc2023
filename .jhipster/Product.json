@@ -1,0 +1,27 @@
+{
+  "changelogDate": "20230927022908",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "price",
+      "fieldType": "BigDecimal"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Product",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "transaction",
+      "relationshipName": "transaction",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}
