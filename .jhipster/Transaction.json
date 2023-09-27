@@ -1,0 +1,23 @@
+{
+  "changelogDate": "20230927164213",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "day",
+      "fieldType": "ZonedDateTime"
+    }
+  ],
+  "jpaMetamodelFiltering": false,
+  "name": "Transaction",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "client",
+      "relationshipName": "client",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

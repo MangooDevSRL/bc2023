@@ -3,8 +3,8 @@ version: '3.8'
 services:
   bootcamp2023-postgresql:
     image: postgres:14.5
-    # volumes:
-    #   - ~/volumes/jhipster/bootcamp2023/postgresql/:/var/lib/postgresql/data/
+    volumes:
+      - ./database:/var/lib/postgresql/data/
     environment:
       - POSTGRES_USER=bootcamp2023
       - POSTGRES_PASSWORD=
