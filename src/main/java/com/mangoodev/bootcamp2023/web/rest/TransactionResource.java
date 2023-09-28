@@ -7,7 +7,11 @@ import com.mangoodev.bootcamp2023.service.dto.TransactionDTO;
 import com.mangoodev.bootcamp2023.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -165,11 +169,14 @@ public class TransactionResource {
         return ResponseUtil.wrapOrNotFound(transactionDTO);
     }
 
-    @GetMapping("/transactions/day")
-    public ResponseEntity<List<TransactionDTO>> getDayTransactions() {
-        log.debug("REST request to get the top 3 clients with most transactions");
+    @GetMapping("/transactions-by-date") //?fecha=yyyy-MM-dd
+    public ResponseEntity<List<TransactionDTO>> getDayTransactions(@RequestParam("fecha") String fechaStr) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX");
+        ZonedDateTime fecha = ZonedDateTime.parse(fechaStr + "T12:00:00Z", formatter);
 
-        List<TransactionDTO> dayTransactions = transactionService.findDayTransactions();
+        LocalDate localDate = fecha.toLocalDate(); // Convertimos a LocalDate
+
+        List<TransactionDTO> dayTransactions = transactionService.findDayTransactions(localDate);
 
         return ResponseEntity.ok(dayTransactions);
     }

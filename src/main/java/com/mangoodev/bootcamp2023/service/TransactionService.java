@@ -6,6 +6,7 @@ import com.mangoodev.bootcamp2023.repository.TransactionRepository;
 import com.mangoodev.bootcamp2023.service.dto.ClientDTO;
 import com.mangoodev.bootcamp2023.service.dto.TransactionDTO;
 import com.mangoodev.bootcamp2023.service.mapper.TransactionMapper;
+import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -115,8 +116,8 @@ public class TransactionService {
         transactionRepository.deleteById(id);
     }
 
-    public List<TransactionDTO> findDayTransactions() {
-        List<Transaction> dayTransactions = transactionRepository.findDayTransactions();
+    public List<TransactionDTO> findDayTransactions(LocalDate date) {
+        List<Transaction> dayTransactions = transactionRepository.findDayTransactions(date);
         return transactionMapper.toDto(dayTransactions);
     }
 }
