@@ -30,20 +30,18 @@ management:
       base-path: /management
       exposure:
         include:
-          [
-            'configprops',
-            'env',
-            'health',
-            'info',
-            'jhimetrics',
-            'jhiopenapigroups',
-            'logfile',
-            'loggers',
-            'prometheus',
-            'threaddump',
-            'caches',
-            'liquibase',
-          ]
+          - configprops
+          - env
+          - health
+          - info
+          - jhimetrics
+          - jhiopenapigroups
+          - logfile
+          - loggers
+          - prometheus
+          - threaddump
+          - caches
+          - liquibase
   endpoint:
     health:
       show-details: when_authorized
@@ -65,10 +63,9 @@ management:
   health:
     mail:
       enabled: false # When using the MailService, configure an SMTP server and set this to true
-  metrics:
-    export:
-      # Prometheus is the default metrics backend
-      prometheus:
+  prometheus:
+    metrics:
+      export:
         enabled: true
         step: 60
     enable:
@@ -92,7 +89,7 @@ management:
 
 spring:
   application:
-    name: bootcamp2023
+    name: bc2023
   profiles:
     # The commented value for `active` can be replaced with valid Spring profiles to load.
     # Otherwise, it will be filled in by maven when building the JAR file
@@ -114,6 +111,7 @@ spring:
     open-in-view: false
     properties:
       hibernate.jdbc.time_zone: UTC
+      hibernate.type.preferred_instant_jdbc_type: TIMESTAMP
       hibernate.id.new_generator_mappings: true
       hibernate.connection.provider_disables_autocommit: true
       hibernate.cache.use_second_level_cache: true
@@ -128,24 +126,24 @@ spring:
     hibernate:
       ddl-auto: none
       naming:
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
         implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
   messages:
     basename: i18n/messages
   main:
     allow-bean-definition-overriding: true
   mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
+    problemdetails:
+      enabled: true
   task:
     execution:
-      thread-name-prefix: bootcamp-2023-task-
+      thread-name-prefix: bc-2023-task-
       pool:
         core-size: 2
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: bootcamp-2023-scheduling-
+      thread-name-prefix: bc-2023-scheduling-
       pool:
         size: 2
   thymeleaf:
@@ -176,7 +174,7 @@ info:
 
 jhipster:
   clientApp:
-    name: 'bootcamp2023App'
+    name: 'bc2023App'
   # By default CORS is disabled. Uncomment to enable.
   # cors:
   #   allowed-origins: "http://localhost:8100,http://localhost:9000"
@@ -186,12 +184,12 @@ jhipster:
   #   allow-credentials: true
   #   max-age: 1800
   mail:
-    from: bootcamp2023@localhost
+    from: bc2023@localhost
   api-docs:
     default-include-pattern: ${server.servlet.context-path:}/api/**
     management-include-pattern: ${server.servlet.context-path:}/management/**
-    title: Bootcamp 2023 API
-    description: Bootcamp 2023 API documentation
+    title: Bc 2023 API
+    description: Bc 2023 API documentation
     version: 0.0.1
     terms-of-service-url:
     contact-name:

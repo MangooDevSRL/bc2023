@@ -1,1 +1,2 @@
-org.springframework.test.context.ContextCustomizerFactory = com.mangoodev.bootcamp2023.config.TestContainersSpringContextCustomizerFactory
+org.springframework.test.context.ContextCustomizerFactory = con.mangoodev.\
+    bc2023.config.SqlTestContainersSpringContextCustomizerFactory

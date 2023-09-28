@@ -15,7 +15,7 @@
 
 spring:
   application:
-    name: bootcamp2023
+    name: bc2023
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: test
@@ -26,20 +26,17 @@ spring:
     host: localhost
   main:
     allow-bean-definition-overriding: true
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
   messages:
     basename: i18n/messages
   task:
     execution:
-      thread-name-prefix: bootcamp-2023-task-
+      thread-name-prefix: bc-2023-task-
       pool:
         core-size: 1
         max-size: 50
         queue-capacity: 10000
     scheduling:
-      thread-name-prefix: bootcamp-2023-scheduling-
+      thread-name-prefix: bc-2023-scheduling-
       pool:
         size: 20
   thymeleaf:
@@ -56,9 +53,9 @@ server:
 # ===================================================================
 jhipster:
   clientApp:
-    name: 'bootcamp2023App'
+    name: 'bc2023App'
   mail:
-    from: bootcamp2023@localhost.com
+    from: bc2023@localhost.com
     base-url: http://127.0.0.1:8080
   logging:
     # To test json console appender
@@ -67,14 +64,15 @@ jhipster:
       enabled: false
       host: localhost
       port: 5000
-      queue-size: 512
+      ring-buffer-size: 512
   security:
     authentication:
       jwt:
         # This token must be encoded using Base64 (you can type `echo 'secret-key'|base64` on your command line)
-        base64-secret: NDNiZGY0NTZkM2MwYzI2Y2UzNmRmYTgzM2U5NWY1ZDIwYTM1OTQzYTE0MDU2OWNmODAwNmNjMDRhMDBjZWIxYmFmODQyZjEzNWUyYzcyOTllZDMwN2FmZjg4YWU3OTBiODNjMmVmZDI3ZWExODQ5MWQ4NzYyMWIyODk2MDBmNTU=
+        base64-secret: MTM1MTQ3NDE4ZDBjNTcyY2NhNjZiZWIxOWVkMmQ4MzlkZmFkODY3YWNhMDZjZTJhMTM5MzZkNDM4YWQ0NzVkZTQ3OTcwZjY4NTBjMjc4OWY4YThlMTk4M2FhMzY0NjE3YTdjZDc2ZWZmNzBjZjAzZDdjZGY2NDUyNmE2Yzk2OTQ=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 86400
 
 # ===================================================================
 # Application specific properties

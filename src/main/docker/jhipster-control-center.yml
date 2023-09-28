@@ -28,7 +28,7 @@
 # - In Consul mode, the ports are in the consul.yml file.
 # - In Eureka mode, the ports are in the jhipster-registry.yml file.
 
-version: '3.8'
+name: bc2023
 services:
   jhipster-control-center:
     image: 'jhipster/jhipster-control-center:v0.5.0'
@@ -40,11 +40,10 @@ services:
     environment:
       - _JAVA_OPTIONS=-Xmx512m -Xms256m
       - SPRING_PROFILES_ACTIVE=prod,api-docs,static
-      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
       - SPRING_SECURITY_USER_PASSWORD=admin
       # The token should have the same value than the one declared in you Spring configuration under the jhipster.security.authentication.jwt.base64-secret configuration's entry
-      - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET=NDNiZGY0NTZkM2MwYzI2Y2UzNmRmYTgzM2U5NWY1ZDIwYTM1OTQzYTE0MDU2OWNmODAwNmNjMDRhMDBjZWIxYmFmODQyZjEzNWUyYzcyOTllZDMwN2FmZjg4YWU3OTBiODNjMmVmZDI3ZWExODQ5MWQ4NzYyMWIyODk2MDBmNTU=
-      - SPRING_CLOUD_DISCOVERY_CLIENT_SIMPLE_INSTANCES_BOOTCAMP2023_0_URI=http://host.docker.internal:8080
+      - JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET=MTM1MTQ3NDE4ZDBjNTcyY2NhNjZiZWIxOWVkMmQ4MzlkZmFkODY3YWNhMDZjZTJhMTM5MzZkNDM4YWQ0NzVkZTQ3OTcwZjY4NTBjMjc4OWY4YThlMTk4M2FhMzY0NjE3YTdjZDc2ZWZmNzBjZjAzZDdjZGY2NDUyNmE2Yzk2OTQ=
+      - SPRING_CLOUD_DISCOVERY_CLIENT_SIMPLE_INSTANCES_BC2023_0_URI=http://host.docker.internal:8080
       - LOGGING_FILE_NAME=/tmp/jhipster-control-center.log
     # If you want to expose these ports outside your dev PC,
     # remove the "127.0.0.1:" prefix
