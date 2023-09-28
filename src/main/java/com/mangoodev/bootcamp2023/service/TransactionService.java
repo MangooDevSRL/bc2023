@@ -1,13 +1,18 @@
 package com.mangoodev.bootcamp2023.service;
 
+import com.mangoodev.bootcamp2023.domain.Client;
 import com.mangoodev.bootcamp2023.domain.Transaction;
 import com.mangoodev.bootcamp2023.repository.TransactionRepository;
+import com.mangoodev.bootcamp2023.service.dto.ClientDTO;
 import com.mangoodev.bootcamp2023.service.dto.TransactionDTO;
 import com.mangoodev.bootcamp2023.service.mapper.TransactionMapper;
+import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -108,5 +113,10 @@ public class TransactionService {
     public void delete(Long id) {
         log.debug("Request to delete Transaction : {}", id);
         transactionRepository.deleteById(id);
+    }
+
+    public List<TransactionDTO> findDayTransactions() {
+        List<Transaction> dayTransactions = transactionRepository.findDayTransactions();
+        return transactionMapper.toDto(dayTransactions);
     }
 }

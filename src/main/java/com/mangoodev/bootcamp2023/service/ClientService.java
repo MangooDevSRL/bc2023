@@ -9,6 +9,8 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -112,7 +114,8 @@ public class ClientService {
     }
 
     public List<ClientDTO> findTop3ClientsWithTransactions() {
-        List<Client> topClients = clientRepository.findTop3ByOrderByTransactionsDesc();
+        Pageable topThree = PageRequest.of(0, 3);
+        List<Client> topClients = clientRepository.findTop3ByOrderByTransactionsDesc(topThree);
         return clientMapper.toDto(topClients);
     }
 }

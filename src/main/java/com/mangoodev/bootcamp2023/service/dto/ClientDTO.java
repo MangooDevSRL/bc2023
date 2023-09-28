@@ -2,6 +2,8 @@ package com.mangoodev.bootcamp2023.service.dto;
 
 import java.io.Serializable;
 import java.util.Objects;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 /**
  * A DTO for the {@link com.mangoodev.bootcamp2023.domain.Client} entity.

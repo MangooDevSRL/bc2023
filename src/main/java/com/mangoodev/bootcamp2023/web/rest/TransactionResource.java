@@ -2,10 +2,12 @@ package com.mangoodev.bootcamp2023.web.rest;
 
 import com.mangoodev.bootcamp2023.repository.TransactionRepository;
 import com.mangoodev.bootcamp2023.service.TransactionService;
+import com.mangoodev.bootcamp2023.service.dto.ClientDTO;
 import com.mangoodev.bootcamp2023.service.dto.TransactionDTO;
 import com.mangoodev.bootcamp2023.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -161,6 +163,15 @@ public class TransactionResource {
         log.debug("REST request to get Transaction : {}", id);
         Optional<TransactionDTO> transactionDTO = transactionService.findOne(id);
         return ResponseUtil.wrapOrNotFound(transactionDTO);
+    }
+
+    @GetMapping("/transactions/day")
+    public ResponseEntity<List<TransactionDTO>> getDayTransactions() {
+        log.debug("REST request to get the top 3 clients with most transactions");
+
+        List<TransactionDTO> dayTransactions = transactionService.findDayTransactions();
+
+        return ResponseEntity.ok(dayTransactions);
     }
 
     /**
