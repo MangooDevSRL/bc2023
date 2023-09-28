@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+
+
+    <changeSet id="createTransactionProductTable" author="tu_nombre">
+        <createTable tableName="transaction_product">
+            <column name="transaction_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="product_id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="addForeignKeyConstraints" author="tu_nombre">
+        <addForeignKeyConstraint
+            baseTableName="transaction_product"
+            baseColumnNames="transaction_id"
+            constraintName="FK_transaction_product_transaction"
+            referencedTableName="transaction"
+            referencedColumnNames="id"
+            onDelete="CASCADE"
+        />
+        <addForeignKeyConstraint
+            baseTableName="transaction_product"
+            baseColumnNames="product_id"
+            constraintName="FK_transaction_product_product"
+            referencedTableName="product"
+            referencedColumnNames="id"
+            onDelete="CASCADE"
+        />
+    </changeSet>
+
+
+    <changeSet id="addProductTransactionAssociation" author="tu_nombre">
+        <createTable tableName="product_transaction">
+            <column name="product_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="FK_product_transaction_product"/>
+            </column>
+            <column name="transaction_id" type="bigint">
+                <constraints primaryKey="true" nullable="false" foreignKeyName="FK_product_transaction_transaction"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+</databaseChangeLog>
